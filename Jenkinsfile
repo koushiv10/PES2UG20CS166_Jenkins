@@ -12,13 +12,13 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Starting Testing'
-                sh '/var/jenkins_home/workspace/PES2UG20CS166-1/main/hello_exec'
+                sh '/var/jenkins_home/workspace/PES2UG20CS166-1/mainhello_exec'
                 echo 'Test Completed'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Starting Deploy';
+                echo 'Starting Deploy'
                 echo 'Deploy Completed'
             }
         }
