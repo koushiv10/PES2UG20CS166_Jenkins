@@ -1,31 +1,33 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Starting Build'
-                sh 'make -C main'
-                echo 'Build Completed'
-                  }
-        }
-        stage('Test') {
-            steps {
-                echo 'Starting Testing'
-                sh '/var/jenkins_home/workspace/PES2UG20CS166-1/mainhello_exec'
-                echo 'Test Completed'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Starting Deploy'
-                echo 'Deploy Completed'
-            }
+agent any
+stages {
+    stage('Build') {
+        steps {
+            sh 'g++ -o pes2ug20cs166-1 hello.cpp'
         }
     }
-  post {
-    failure {
-      echo 'Pipeline Failed'
+    
+    stage('Test') {
+        steps {
+            sh './pes2ug20cs166-1'
+        }
+    }
+    
+    stage('Deploy') {
+        steps {
+            // deployment code
+            echo 'deployment successful'
+        }
+    }
+}
+
+post {
+    always {
+        script {
+            if (currentBuild.result == "FAILURE") {
+                echo "Pipeline failed"
+            }
+   }
 }
 }
 }
