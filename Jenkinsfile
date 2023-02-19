@@ -7,7 +7,7 @@ pipeline {
                 echo 'Starting Build'
                 sh 'make -C main'
                 echo 'Build Completed'
-            }
+                  }
         }
         stage('Test') {
             steps {
